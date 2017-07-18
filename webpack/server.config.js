@@ -8,19 +8,6 @@ module.exports = (env, base) =>
       filename: "index.js",
       path: path.resolve("dist")
     },
-    module: {
-      rules: base.module.rules.concat([
-        {
-          test: /\.html$/,
-          exclude: /node_modules/,
-          loader: "svelte-loader",
-          options: {
-            generate: "ssr",
-            css: false
-          }
-        }
-      ])
-    },
     target: "node",
     node: {
       __dirname: false,

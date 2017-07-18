@@ -18,8 +18,18 @@ const server = http.createServer(app);
 app.use(express.static(path.resolve(__dirname, "public")));
 
 app.get("*", (req, res) => {
-  const component = render(<App />);
-  const html = render(<Html component={component} assets={assets} />);
+  const css = [];
+  const context = {
+    insertCss(...s) {
+      s.forEach(style => css.push(style._getCss()));
+    }
+  };
+
+  const component = render(<App context={context} />);
+  const html = render(
+    <Html css={css.join("")} component={component} assets={assets} />
+  );
+
   res.end(`<!DOCTYPE html>${html}`);
 });
 

@@ -12,6 +12,7 @@
     "dev": "concurrently --raw 'yarn watch:client' 'yarn watch:server' 'nodemon dist'",
     "start": "node dist",
     "lint": "eslint .",
+    "coverage": "jest --coverage",
     "test": "jest"
   },
   "jest": {
@@ -32,16 +33,16 @@
     "babel-plugin-transform-es2015-modules-commonjs": "^6.24.1",
     "babel-plugin-transform-object-rest-spread": "^6.23.0",
     "babel-plugin-transform-react-constant-elements": "^6.23.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
     "babel-preset-env": "^1.6.0",
     "babili-webpack-plugin": "^0.1.2",
     "concurrently": "^3.5.0",
     "css-loader": "^0.28.4",
-    "cssnano": "^3.10.0",
-    "eslint": "^4.2.0",
     "eslint-loader": "^1.9.0",
     "eslint-plugin-import": "^2.7.0",
     "eslint-plugin-jest": "^20.0.3",
     "eslint-plugin-react": "^7.1.0",
+    "eslint": "^4.2.0",
     "fast-async": "^6.3.0",
     "file-loader": "^0.11.2",
     "identity-obj-proxy": "^3.0.0",
@@ -57,7 +58,6 @@
     "webpack-stats-plugin": "^0.1.5"
   },
   "dependencies": {
-    "babel-plugin-transform-react-jsx": "^6.24.1",
     "express": "^4.15.3",
     "node-fetch": "^1.7.1",
     "preact": "^8.2.1",

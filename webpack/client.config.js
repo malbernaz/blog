@@ -11,15 +11,6 @@ module.exports = (env, base) =>
       path: path.resolve("dist", "public"),
       publicPath: "/"
     },
-    module: {
-      rules: base.module.rules.concat([
-        {
-          test: /\.html$/,
-          exclude: /node_modules/,
-          loader: "svelte-loader"
-        }
-      ])
-    },
     devServer: {
       port: 3030,
       host: "0.0.0.0",
@@ -31,7 +22,12 @@ module.exports = (env, base) =>
     },
     plugins: base.plugins.concat(
       [new StatsWriterPlugin({ filename: "../assets.json" })].concat(
-        env.dev ? [new webpack.HotModuleReplacementPlugin(), new webpack.NamedModulesPlugin()] : []
+        env.dev
+          ? [
+              new webpack.HotModuleReplacementPlugin(),
+              new webpack.NamedModulesPlugin()
+            ]
+          : []
       )
     )
   });
