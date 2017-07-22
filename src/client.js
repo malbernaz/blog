@@ -12,4 +12,15 @@ const context = {
   }
 };
 
-render(<App context={context} />, mnt, mnt.lastElementChild);
+function bootstrap(App) {
+  render(<App context={context} />, mnt, mnt.lastElementChild);
+}
+
+bootstrap(App);
+
+if (module.hot) {
+  module.hot.accept(["./App"], () => {
+    const NextApp = require("./App").default;
+    bootstrap(NextApp);
+  });
+}

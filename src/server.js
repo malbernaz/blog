@@ -26,6 +26,8 @@ app.get("*", (req, res) => {
   };
 
   const component = render(<App context={context} />);
+
+  console.log(component);
   const html = render(
     <Html css={css.join("")} component={component} assets={assets} />
   );

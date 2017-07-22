@@ -4,6 +4,7 @@ const BabiliPlugin = require("babili-webpack-plugin");
 
 const serverConfig = require("./webpack/server.config");
 const clientConfig = require("./webpack/client.config");
+const mdRenderer = require("./md-renderer");
 
 const babelConfig = JSON.parse(fs.readFileSync(".babelrc", "utf-8"));
 
@@ -20,6 +21,12 @@ module.exports = (env = { dev: false, server: false }) => {
     exclude: /node_modules/,
     loader: "babel-loader",
     options: babelConfig
+  };
+
+  const markDownRule = {
+    test: /\.md$/,
+    loader: "blog-post-loader",
+    options: { renderer: mdRenderer }
   };
 
   const cssRule = {
@@ -72,7 +79,7 @@ module.exports = (env = { dev: false, server: false }) => {
 
   const base = {
     module: {
-      rules: [eslintRule, jsRule, cssRule, fileRule]
+      rules: [eslintRule, jsRule, markDownRule, cssRule, fileRule]
     },
     devtool: env.dev ? "eval" : false,
     bail: !env.dev,

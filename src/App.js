@@ -1,15 +1,26 @@
+import s from "./App.css";
+
 import { h, Component } from "preact";
 import Provider from "./lib/Provider";
+import withStyles from "./lib/withStyles";
 import Header from "./components/Header";
+import PostsList from "./components/PostsList";
 
-export default class App extends Component {
-  render({ context }) {
+@withStyles(s)
+class Root extends Component {
+  render() {
     return (
-      <Provider context={context}>
-        <div>
-          <Header />
-        </div>
-      </Provider>
+      <div class={s.root}>
+        <Header />
+        <PostsList />
+      </div>
     );
   }
 }
+
+const App = ({ context }) =>
+  <Provider context={context}>
+    <Root />
+  </Provider>;
+
+export default App;
